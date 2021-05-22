@@ -7,7 +7,7 @@
     /* Used in delivery time/date form element */
     .column {
         float: left;
-        width: 47%;
+        width: 46%;
         box-sizing: border-box;
     }
     .row:after {
