@@ -1,0 +1,45 @@
+    /* Not working notification */
+    .dayoffwarning {
+        background-color: #fbc30a;
+        padding: 20px 20px 20px;
+    }
+    /* Used in delivery time/date */
+    .column {
+        float: left;
+        width: 40%;
+        box-sizing: border-box;
+    }
+    /* Used in delivery time/date */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+        box-sizing: border-box;
+    }
+    /* Inactive form button */
+    .opbtn {
+        opacity: 0.2
+    }
+
+    /* Datepicker */
+    .pastDay{
+        opacity: 0.4;
+        pointer-events: none;
+    }
+    .pastDay td:before ,  td.pastDay:before{
+        content:'';
+        position:absolute;
+        display:block;
+        width:auto;
+        height:auto;
+        left:0;
+        top:0;
+        right:0;
+        bottom:0;
+        background: rgba(0,0,0,0) url(https://static.tildacdn.com/tild3963-6535-4363-b162-636139623966/cross.svg) no-repeat;
+        background-size:100% 100%;
+    }
+    .calendar-day-off {
+        background: #fcb42f;
+        pointer-events: none;
+    }
