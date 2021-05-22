@@ -6,7 +6,7 @@
     /* Used in delivery time/date */
     .column {
         float: left;
-        width: 40%;
+        width: 47%;
         box-sizing: border-box;
     }
     .row:after {
