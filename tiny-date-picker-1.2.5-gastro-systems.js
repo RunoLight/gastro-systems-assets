@@ -2,30 +2,123 @@
 
 console.log('Gastro systems datepicker init')
 
-function gastro_systems_datepicker_init() {
-    var browserLang = window.navigator.userLanguage || window.navigator.language;
-    var targetField = $('.t706 input[name="delivery-date"]').closest('.t-input-block').get(0);
+function datepicker_dictionary(language_code) {
+    const datepickerMonths = {
+        RU: [
+            "Январь",
+            "Февраль",
+            "Март",
+            "Апрель",
+            "Май",
+            "Июнь",
+            "Июль",
+            "Август",
+            "Сентябрь",
+            "Октябрь",
+            "Ноябрь",
+            "Декабрь"
+        ],
+        PL: [
+            "Styczeń",
+            "Luty",
+            "Marzec",
+            "Kwiecień",
+            "Maj",
+            "Czerwiec",
+            "Lipiec",
+            "Sierpień",
+            "Wrzesień",
+            "Październik",
+            "Listopad",
+            "Grudzień"
+        ],
+        EN: [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ]
+    };
+    const datepickerWeekdays = {
+        RU: [
+            'вс',
+            'пн',
+            'вт',
+            'ср',
+            'чт',
+            'пт',
+            'сб'
+        ],
+        PL: [
+            'nie',
+            'pon',
+            'wto',
+            'śro',
+            'czw',
+            'pią',
+            'sob'
+        ],
+        EN: [
+            'sun',
+            'mon',
+            'tue',
+            'wed',
+            'thu',
+            'fri',
+            'sat'
+        ]
+    };
 
-    if (browserLang.indexOf("ru") != "-1" || browserLang.indexOf("RU") != "-1" || browserLang.indexOf("Ru") != "-1") {
-        var t_ruMonths = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
-            t_ruWeekDays = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
-        $(targetField).find(".t-datepicker").datePicker({
-            months: t_ruMonths,
-            weekDays: t_ruWeekDays,
-            sundayBased: false,
-            body: targetField,
-            renderCallback: t_datepicker_renderCallback,
-            renderValue: t_datepicker_renderValue,
-            readValue: t_datepicker_readValue
-        });
-    } else {
-        $(targetField).find(".t-datepicker").datePicker({
-            body: targetField,
-            renderCallback: t_datepicker_renderCallback,
-            renderValue: t_datepicker_renderValue,
-            readValue: t_datepicker_readValue
-        });
+    return {
+        months: datepickerMonths[language_code] || datepickerMonths.EN,
+        weekDays: datepickerWeekdays[language_code] || datepickerWeekdays.EN
     }
+}
+
+function gastro_systems_datepicker_init(language_code) {
+    language_code = language_code.toUpperCase() || 'EN';
+    const localized_data = datepicker_dictionary(language_code);
+
+    const targetField = $('.t706 input[name="delivery-date"]').closest('.t-input-block').get(0);
+
+    $(targetField).find(".t-datepicker").datePicker({
+        months: localized_data.months,
+        weekDays: localized_data.weekDays,
+        sundayBased: false,
+        body: targetField,
+        renderCallback: t_datepicker_renderCallback,
+        renderValue: t_datepicker_renderValue,
+        readValue: t_datepicker_readValue
+    });
+
+    // if (browserLang.indexOf("ru") != "-1" || browserLang.indexOf("RU") != "-1" || browserLang.indexOf("Ru") != "-1") {
+    //     var t_ruMonths = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+    //         t_ruWeekDays = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+    //     $(targetField).find(".t-datepicker").datePicker({
+    //         months: t_ruMonths,
+    //         weekDays: t_ruWeekDays,
+    //         sundayBased: false,
+    //         body: targetField,
+    //         renderCallback: t_datepicker_renderCallback,
+    //         renderValue: t_datepicker_renderValue,
+    //         readValue: t_datepicker_readValue
+    //     });
+    // } else {
+    //     $(targetField).find(".t-datepicker").datePicker({
+    //         body: targetField,
+    //         renderCallback: t_datepicker_renderCallback,
+    //         renderValue: t_datepicker_renderValue,
+    //         readValue: t_datepicker_readValue
+    //     });
+    // }
 }
 
 
